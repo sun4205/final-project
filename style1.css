@@ -1,0 +1,208 @@
+
+/* ===== 변수 구간 ===== */
+:root {
+  --color-main: #c26e4f;
+  --color-sub: #00A200;
+  --color-dark: #2F4858;
+  --color-emph: #F10F5F;
+  --color-text: #281812;
+  --color-lighter: #DC9C86;
+  --color-light-bd: #FFE6D6;
+  --color-light-bg: #FFF5ED;
+
+  --font-code: 'Nanum Gothic Coding', monospace;;
+
+  --font-size-title: 44px;
+  --font-size-subtitle: 32px;
+  --font-size-tag: 26px;
+  --font-size-larger: 20px;
+  --font-size-text: 18px;
+
+  --height-toolbar: 72px;
+}
+
+
+/* ===== 리셋 구간 ===== */
+
+
+
+
+
+
+
+
+
+.intro {
+    position: relative;
+    background-image: url('./images1/office.jpg');
+    background-size: contain;
+    background-position: right;
+  }
+  
+  /* 배경 이미지를 반투명 검정으로 가리기 */
+  .intro__dark {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+  .intro__type {
+    display: inline-flex;
+    gap: 0.32em;
+    font-family: var(--font-code);
+    font-size: 3.4em;
+    font-weight: bold;
+    color: white;
+  }
+  .intro__type .underscore {
+    animation-name: blink;
+    animation-duration: 400ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  
+  [class^="intro__tilt"] {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    background-color: var(--color-main);
+    clip-path: polygon(100% 90%, 100% 50%, 0 100%, 0 0);
+  }
+  .intro__tilt--flip {
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 90%);
+    opacity: 0.5;
+  }
+  
+  
+  @media (min-width: 769px) {
+    .intro {
+      height: 500px;
+    }
+    .intro__type {
+      margin-top: 172px;
+      align-items: center;
+    }
+    .intro__type span {
+      display: inline-flex;
+      vertical-align: middle;
+      margin-bottom: 0.25em;
+    }
+  }
+  
+  @keyframes blink {
+    from { opacity: 0; }
+    to { opacity: 10; }
+  }
+
+  .header {
+    display: flex;
+    position: sticky;
+  
+    /* 스크롤업되는 컨텐츠 위로 올라오도록 */
+    z-index: 2;
+  
+    top: 0;
+    height: var(--height-toolbar);
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-main);
+  
+    color: white;
+  }
+  .header__homelink {
+    display: inline-block;
+    padding: 0 24px;
+    height: var(--height-toolbar);
+    line-height: var(--height-toolbar);
+    cursor: pointer;
+  }
+  .header__logo {
+    height: 48px;
+    vertical-align: middle;
+    margin-bottom: 4px;
+  }
+  .header__nav-item {
+    font-size: var(--font-size-larger);
+  }
+  .header__nav-item a {
+    /* 클릭 영역 확대 */
+    display: inline-block;
+    height: var(--height-toolbar);
+    line-height: var(--height-toolbar);
+  }
+  
+  @media (max-width: 768px) {
+    .header__nav {
+      display: none;
+    }
+  
+    /* 체크박스 인풋을 버튼으로 커스터마이즈 */
+    .header__menu-btn {
+      all: unset;
+      display: block;
+      width: var(--height-toolbar);
+      height: var(--height-toolbar);
+      background-image: url(../images/menu-button.svg);
+      background-size: 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  
+    /* on 클래스 유무에 따라 바뀌는 것으로 수정 */
+    .header__menu-btn.on {
+      background-color: var(--color-dark);
+    }
+    .header__nav.active {
+      display: inherit;
+      position: absolute;
+      top: var(--height-toolbar);
+      right: 0;
+      background-color: var(--color-dark);
+      padding-bottom: 1em;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    }
+    .header__nav-item {
+      width: 100vw;
+      text-align: center;
+    }
+    .header__nav-item a {
+      width: 100vw;
+    }
+    .header__nav-item:not(:last-child) {
+      border-bottom: 2px solid rgba(255, 255, 255, 0.06);
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .header__menu-btn {
+      display: none;
+    }
+    .header__nav-item {
+      display: inline-block;
+      position: relative;
+    }
+    .header__nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background-color: white;
+      transition: all 350ms;
+    }
+    .header__nav-item:hover::after {
+      left: 0;
+      width: 100%;
+      height: 8px;
+    }
+    .header__nav-item a {
+      padding: 0 0.8em;
+    }
+    .header__nav-item:last-child {
+      margin-right: 1.6em;
+    }
+  }
